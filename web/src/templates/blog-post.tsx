@@ -12,7 +12,7 @@ interface BlogPostProps {
   errors: any[];
 }
 
-export default function BlogPostTemplate ({ data, errors }: BlogPostProps) {
+export default function BlogPostTemplate({ data, errors }: BlogPostProps) {
   const post = data && data.post;
   return (
     <Layout>
@@ -34,8 +34,7 @@ export default function BlogPostTemplate ({ data, errors }: BlogPostProps) {
       {post && <BlogPost {...post} />}
     </Layout>
   );
-};
-
+}
 
 export const query = graphql`
   query BlogPostTemplateQuery($id: String!) {

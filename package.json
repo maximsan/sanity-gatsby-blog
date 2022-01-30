@@ -15,6 +15,8 @@
   },
   "devDependencies": {
     "@sanity/cli": "^2.25.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
@@ -22,6 +24,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.22.0",
     "lerna": "^3.13.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.5.5"
   }
 }

@@ -1,5 +1,3 @@
-
-
 const strokeStyle = { vectorEffect: "non-scaling-stroke" };
 
 const HamburgerIcon = () => (

@@ -11,7 +11,7 @@ import SEO from "../components/seo";
 import Layout from "../containers/layout";
 
 interface IPageProps extends PageProps {
-  errors: any[]
+  errors: any[];
 }
 
 export default function IndexPage(props: IPageProps) {

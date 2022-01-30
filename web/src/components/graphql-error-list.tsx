@@ -1,5 +1,3 @@
-
-
 const GraphQLErrorList = ({ errors }) => (
   <div>
     <h1>GraphQL Error</h1>

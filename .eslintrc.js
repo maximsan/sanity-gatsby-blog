@@ -1,5 +1,6 @@
 module.exports = {
-  parser: "babel-eslint",
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2020,
@@ -13,9 +14,11 @@ module.exports = {
   },
   rules: {
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": 0,
   },
   extends: [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
@@ -24,6 +27,11 @@ module.exports = {
     react: {
       pragma: "React",
       version: "detect",
+    },
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
     },
   },
 };
