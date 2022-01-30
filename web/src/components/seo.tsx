@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Helmet, { HelmetProps } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 import { imageUrlFor } from "../lib/image-url";
@@ -8,20 +7,18 @@ interface SEOProps extends HelmetProps {
   description: string;
   keywords: string[];
   lang: string;
-  image: {
+  image?: {
     asset: string;
   };
 }
 
-function SEO({ description, lang, meta, keywords, title, image }: SEOProps) {
+export default function SEO({ description, lang, meta, keywords, title, image }: SEOProps) {
   const { site } = useStaticQuery(detailsQuery) || {};
 
   const metaDescription = description || site.description || "";
   const siteTitle = site.title || "";
   const siteAuthor = site.author?.name || "";
-  const metaImage = image?.asset
-    ? imageUrlFor(buildImageObj(image)).width(1200).url()
-    : "";
+  const metaImage = image?.asset ? imageUrlFor(buildImageObj(image)).width(1200).url() : "";
 
   return (
     <Helmet
@@ -84,16 +81,6 @@ SEO.defaultProps = {
   meta: [],
   keywords: [],
 };
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-};
-
-export default SEO;
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {

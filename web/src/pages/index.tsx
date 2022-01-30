@@ -1,17 +1,23 @@
 import { graphql, PageProps } from "gatsby";
-import {
-  filterOutDocsPublishedInTheFuture,
-  filterOutDocsWithoutSlugs,
-  mapEdgesToNodes,
-} from "../lib/helpers";
+import { filterOutDocsPublishedInTheFuture, filterOutDocsWithoutSlugs, mapEdgesToNodes } from "../lib/helpers";
 import BlogPostPreviewList from "../components/blog-post-preview-list";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
+import { SanityPostConnection, SanitySiteSettings } from "../generated/graphql";
 
-interface IPageProps extends PageProps {
-  errors: any[];
+interface IPageProps extends PageProps<Data> {
+  errors?: {
+    locations: { column: number; line: number }[];
+    message: string;
+    path: string[];
+  }[];
+}
+
+interface Data {
+  site: SanitySiteSettings;
+  posts: SanityPostConnection;
 }
 
 export default function IndexPage(props: IPageProps) {
@@ -19,7 +25,7 @@ export default function IndexPage(props: IPageProps) {
 
   const { data, errors } = props;
 
-  if (errors) {
+  if (errors?.length) {
     return (
       <Layout>
         <GraphQLErrorList errors={errors} />
@@ -29,9 +35,7 @@ export default function IndexPage(props: IPageProps) {
 
   const site = (data || {}).site;
   const postNodes = (data || {}).posts
-    ? mapEdgesToNodes(data.posts)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
+    ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs).filter(filterOutDocsPublishedInTheFuture)
     : [];
 
   if (!site) {
@@ -42,20 +46,10 @@ export default function IndexPage(props: IPageProps) {
 
   return (
     <Layout>
-      <SEO
-        title={site.title}
-        description={site.description}
-        keywords={site.keywords}
-      />
+      <SEO title={site.title ?? ""} description={site.description ?? ""} keywords={site.keywords as string[]} />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
-        {postNodes && (
-          <BlogPostPreviewList
-            title="Latest blog posts"
-            nodes={postNodes}
-            browseMoreHref="/archive/"
-          />
-        )}
+        {postNodes && <BlogPostPreviewList title="Latest blog posts" nodes={postNodes} browseMoreHref="/archive/" />}
       </Container>
     </Layout>
   );
