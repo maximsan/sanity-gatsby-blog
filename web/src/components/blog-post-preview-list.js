@@ -1,7 +1,7 @@
 import * as styles from "./blog-post-preview-list.module.css";
 import BlogPostPreview from "./blog-post-preview";
 import { Link } from "gatsby";
-import React from "react";
+
 
 function BlogPostPreviewGrid(props) {
   return (

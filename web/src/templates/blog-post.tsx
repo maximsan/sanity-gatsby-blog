@@ -1,6 +1,6 @@
 import { graphql } from "gatsby";
 import BlogPost from "../components/blog-post";
-import React from "react";
+
 import GraphQLErrorList from "../components/graphql-error-list";
 import Layout from "../containers/layout";
 import Container from "../components/container";

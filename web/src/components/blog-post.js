@@ -3,7 +3,7 @@ import { differenceInDays, formatDistance, format } from "date-fns";
 import AuthorList from "./author-list";
 import Container from "./container";
 import PortableText from "./portableText";
-import React from "react";
+
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 

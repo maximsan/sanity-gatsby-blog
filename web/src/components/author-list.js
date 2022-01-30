@@ -1,5 +1,5 @@
 import * as styles from "./author-list.module.css";
-import React from "react";
+
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 

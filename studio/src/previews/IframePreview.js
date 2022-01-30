@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp, react/no-did-mount-set-state */
-import React from "react";
+
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import styles from "./IframePreview.module.css";
