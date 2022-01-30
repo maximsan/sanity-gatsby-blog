@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import Helmet, { HelmetProps } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 import { imageUrlFor } from "../lib/image-url";
 import { buildImageObj } from "../lib/helpers";
 
-function SEO({ description, lang, meta, keywords, title, image }) {
+interface SEOProps extends HelmetProps {
+  description: string;
+  keywords: string[];
+  lang: string;
+  image: {
+    asset: string;
+  };
+}
+
+function SEO({ description, lang, meta, keywords, title, image }: SEOProps) {
   const { site } = useStaticQuery(detailsQuery) || {};
 
   const metaDescription = description || site.description || "";
