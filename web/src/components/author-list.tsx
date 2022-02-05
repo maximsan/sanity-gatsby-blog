@@ -16,11 +16,7 @@ function AuthorList({ items, title }) {
                 <div className={styles.avatar}>
                   {author && author.image && author.image.asset && (
                     <img
-                      src={imageUrlFor(buildImageObj(author.image))
-                        .width(100)
-                        .height(100)
-                        .fit("crop")
-                        .url()}
+                      src={imageUrlFor(buildImageObj(author.image)).width(100).height(100).fit("crop").url()}
                       alt=""
                     />
                   )}

@@ -5,7 +5,5 @@ import { loadStructure } from "./lib/structure";
 export function toPropsStream(props$) {
   const structure$ = loadStructure();
 
-  return combineLatest(props$, structure$).pipe(
-    map(([props, structure]) => ({ ...props, structure }))
-  );
+  return combineLatest(props$, structure$).pipe(map(([props, structure]) => ({ ...props, structure })));
 }

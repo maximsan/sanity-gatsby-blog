@@ -4,7 +4,7 @@ import { imageUrlFor } from "../lib/image-url";
 import { buildImageObj } from "../lib/helpers";
 
 interface SEOProps extends HelmetProps {
-  description: string;
+  description?: string;
   keywords: string[];
   lang: string;
   image?: {
