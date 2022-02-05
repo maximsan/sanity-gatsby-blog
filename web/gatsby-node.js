@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { isFuture } = require("date-fns");
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -5,15 +6,14 @@ const { isFuture } = require("date-fns");
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { format } = require("date-fns");
 
 async function createBlogPostPages(graphql, actions) {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allSanityPost(
-        filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-      ) {
+      allSanityPost(filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }) {
         edges {
           node {
             id

@@ -18,11 +18,7 @@ export default function BlogPostTemplate({ data, errors }: BlogPostProps) {
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {post && (
-        <SEO
-          title={post.title || "Untitled"}
-          description={toPlainText(post._rawExcerpt)}
-          image={post.mainImage}
-        />
+        <SEO title={post.title || "Untitled"} description={toPlainText(post._rawExcerpt)} image={post.mainImage} />
       )}
 
       {errors && (
