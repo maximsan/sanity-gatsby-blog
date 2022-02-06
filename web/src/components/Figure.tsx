@@ -7,7 +7,7 @@ export const Figure = ({ node }) => {
   if (!node || !node.asset || !node.asset._id) {
     return null;
   }
-  const gatsbyImageData = getGatsbyImageData(node, { maxWidth: 675 }, config.sanity);
+  const gatsbyImageData = getGatsbyImageData(node, { maxWidth: 675 } as any, config.sanity);
   return (
     <figure>
       {gatsbyImageData && <GatsbyImage image={gatsbyImageData} alt={node.alt} />}

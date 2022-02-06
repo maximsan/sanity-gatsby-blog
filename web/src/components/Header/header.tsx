@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "gatsby";
 
 import { cn } from "../../lib/helpers";
-import { Icon } from "../../icons";
 
 export interface HeaderProps {
   showNav: boolean;
@@ -20,7 +19,7 @@ export const Header = ({ onHideNav, onShowNav, showNav, siteTitle }: Partial<Hea
       </div>
 
       <button className="" onClick={showNav ? onHideNav : onShowNav}>
-        <Icon symbol="hamburger" />
+        Icon
       </button>
 
       <nav className={cn(showNav && "")}>

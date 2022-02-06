@@ -21,7 +21,11 @@ export default function SEO({ description = "", lang, meta, keywords, title = ""
   const metaDescription = description || site.description || "";
   const siteTitle = site.title || "";
   const siteAuthor = site.author?.name || "";
-  const metaImage = image?.asset ? imageUrlFor(buildImageObj(image)).width(1200).url() : "";
+  const metaImage = image?.asset
+    ? imageUrlFor(buildImageObj(image as any))
+        .width(1200)
+        .url()
+    : "";
 
   return (
     <Helmet
