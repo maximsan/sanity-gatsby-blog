@@ -6,21 +6,24 @@ import PortableText from "./portableText";
 
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
+import { SanityPost } from "../generated/graphql";
 
-function BlogPost(props) {
+type BlogPostProps = SanityPost;
+
+function BlogPost(props: BlogPostProps) {
   const { _rawBody, authors, categories, title, mainImage, publishedAt } = props;
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
         <div className={styles.mainImage}>
           <img
-            src={imageUrlFor(buildImageObj(mainImage))
+            src={imageUrlFor((buildImageObj(mainImage) as unknown) as string)
               .width(1200)
               .height(Math.floor((9 / 16) * 1200))
               .fit("crop")
               .auto("format")
               .url()}
-            alt={mainImage.alt}
+            alt={mainImage.alt as string}
           />
         </div>
       )}
@@ -44,7 +47,7 @@ function BlogPost(props) {
                 <h3 className={styles.categoriesHeadline}>Categories</h3>
                 <ul>
                   {categories.map((category) => (
-                    <li key={category._id}>{category.title}</li>
+                    <li key={category?._id}>{category?.title}</li>
                   ))}
                 </ul>
               </div>

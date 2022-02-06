@@ -1,4 +1,5 @@
 import { graphql } from "gatsby";
+import type { PageProps } from "gatsby";
 import BlogPost from "../components/blog-post";
 
 import GraphQLErrorList from "../components/graphql-error-list";
@@ -6,11 +7,14 @@ import Layout from "../containers/layout";
 import Container from "../components/container";
 import SEO from "../components/seo";
 import { toPlainText } from "../lib/helpers";
+import { SanityPost } from "../generated/graphql";
+import { SanityErrors } from "../pages";
 
-interface BlogPostProps {
-  data: any;
-  errors: any[];
+interface Data {
+  post: SanityPost;
 }
+
+interface BlogPostProps extends PageProps<Data>, SanityErrors {}
 
 export default function BlogPostTemplate({ data, errors }: BlogPostProps) {
   const post = data && data.post;
@@ -18,7 +22,11 @@ export default function BlogPostTemplate({ data, errors }: BlogPostProps) {
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {post && (
-        <SEO title={post.title || "Untitled"} description={toPlainText(post._rawExcerpt)} image={post.mainImage} />
+        <SEO
+          title={post.title || "Untitled"}
+          description={toPlainText(post._rawExcerpt)}
+          image={post.mainImage ?? { asset: "" }}
+        />
       )}
 
       {errors && (

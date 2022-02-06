@@ -1,6 +1,6 @@
 const strokeStyle = { vectorEffect: "non-scaling-stroke" };
 
-const HamburgerIcon = () => (
+export const HamburgerIcon = () => (
   <svg
     viewBox="0 0 25 25"
     fill="none"
@@ -14,5 +14,3 @@ const HamburgerIcon = () => (
     <path d="M5 17.5H20" stroke="currentColor" style={strokeStyle} />
   </svg>
 );
-
-export default HamburgerIcon;

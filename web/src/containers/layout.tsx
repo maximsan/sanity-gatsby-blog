@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Layout from "../components/layout";
+import Header from "../components/header";
+import * as styles from "./layout.module.css";
 
-const query = graphql`
-  query SiteTitleQuery {
-    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-      title
-    }
-  }
-`;
+import "../styles/layout.css";
 
-function LayoutContainer(props) {
+export interface LayoutProps {
+  siteTitle?: string;
+}
+
+function LayoutContainer({ siteTitle, children }: PropsWithChildren<LayoutProps>) {
   const [showNav, setShowNav] = useState(false);
 
   function handleShowNav() {
@@ -29,14 +28,24 @@ function LayoutContainer(props) {
   }
 
   return (
-    <Layout
-      {...props}
-      showNav={showNav}
-      siteTitle={data.site.title}
-      onHideNav={handleHideNav}
-      onShowNav={handleShowNav}
-    />
+    <>
+      <Header siteTitle={siteTitle} onHideNav={handleHideNav} onShowNav={handleShowNav} showNav={showNav} />
+      <div className={styles.content}>{children}</div>
+      <footer className={styles.footer}>
+        <div className={styles.footerWrapper}>
+          {/*<div className={styles.siteInfo}>{new Date().getFullYear()}</div>*/}
+        </div>
+      </footer>
+    </>
   );
 }
+
+const query = graphql`
+  query SiteTitleQuery {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      title
+    }
+  }
+`;
 
 export default LayoutContainer;

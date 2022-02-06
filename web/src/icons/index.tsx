@@ -1,6 +1,6 @@
-import HamburgerIcon from "./hamburger";
+import { HamburgerIcon } from "./hamburger";
 
-function Icon(props) {
+export function Icon(props) {
   switch (props.symbol) {
     case "hamburger":
       return <HamburgerIcon />;
@@ -8,5 +8,3 @@ function Icon(props) {
       return <span>Unknown icon: {props.symbol}</span>;
   }
 }
-
-export default Icon;

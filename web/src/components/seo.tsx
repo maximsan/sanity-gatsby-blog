@@ -1,18 +1,19 @@
-import Helmet, { HelmetProps } from "react-helmet";
+import Helmet from "react-helmet";
+import type { HelmetProps } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 import { imageUrlFor } from "../lib/image-url";
 import { buildImageObj } from "../lib/helpers";
+import { Maybe, SanityMainImage } from "../generated/graphql";
 
-interface SEOProps extends HelmetProps {
-  description?: string;
+interface SEOProps extends Omit<HelmetProps, "title"> {
+  description?: Maybe<string>;
   keywords: string[];
   lang: string;
-  image?: {
-    asset: string;
-  };
+  image?: SanityMainImage | { asset: string };
+  title?: Maybe<string>;
 }
 
-export default function SEO({ description, lang, meta, keywords, title, image }: SEOProps) {
+export default function SEO({ description = "", lang, meta, keywords, title = "", image }: SEOProps) {
   const { site } = useStaticQuery(detailsQuery) || {};
 
   const metaDescription = description || site.description || "";
@@ -23,7 +24,7 @@ export default function SEO({ description, lang, meta, keywords, title, image }:
   return (
     <Helmet
       htmlAttributes={{ lang }}
-      title={title}
+      title={title ?? ""}
       titleTemplate={title === siteTitle ? "%s" : `%s | ${siteTitle}`}
       meta={[
         {
@@ -71,7 +72,7 @@ export default function SEO({ description, lang, meta, keywords, title, image }:
               }
             : []
         )
-        .concat(meta)}
+        .concat(meta as never)}
     />
   );
 }

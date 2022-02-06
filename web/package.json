@@ -11,16 +11,20 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "generate": "set DEBUG=1 && graphql-codegen --config codegen.yml",
-    "generate:watch": "yarn generate -w"
+    "generate:watch": "yarn generate -w",
+    "generate:css": "tcm -p 'src/**/*.module.css' .",
+    "generate:css:w": "yarn generate:css -w",
+    "start": "concurrently --kill-others-on-fail \"yarn dev\" \"yarn generate:css:w\""
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.4.0",
+    "@graphql-codegen/introspection": "2.1.1",
+    "@graphql-codegen/typescript": "2.4.2",
+    "@graphql-codegen/typescript-operations": "2.2.2",
+    "concurrently": "^7.0.0",
     "dotenv": "^8.0.0",
     "postcss": "^8.2.7",
-    "postcss-preset-env": "^6.6.0",
-    "@graphql-codegen/typescript-operations": "2.2.2",
-    "@graphql-codegen/typescript": "2.4.2",
-    "@graphql-codegen/introspection": "2.1.1",
-    "@graphql-codegen/cli": "2.4.0"
+    "postcss-preset-env": "^6.6.0"
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
@@ -29,16 +33,19 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.5",
+    "babel-plugin-styled-components": "^2.0.2",
     "date-fns": "^2.19.0",
     "gatsby": "^4.6.0",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-postcss": "^4.0.0",
     "gatsby-plugin-react-helmet": "^4.0.0",
+    "gatsby-plugin-styled-components": "^5.6.0",
     "gatsby-source-sanity": "^7.3.2",
     "graphql": "^15.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.3.3"
   }
 }

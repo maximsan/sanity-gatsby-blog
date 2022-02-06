@@ -1,13 +1,14 @@
-import { graphql, PageProps } from "gatsby";
+import { graphql } from "gatsby";
+import type { PageProps } from "gatsby";
 import { filterOutDocsPublishedInTheFuture, filterOutDocsWithoutSlugs, mapEdgesToNodes } from "../lib/helpers";
 import BlogPostPreviewList from "../components/blog-post-preview-list";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
 import SEO from "../components/seo";
-import Layout from "../containers/layout";
+import MainLayout from "../containers/layout";
 import { SanityPostConnection, SanitySiteSettings } from "../generated/graphql";
 
-interface IPageProps extends PageProps<Data> {
+export interface SanityErrors {
   errors?: {
     locations: { column: number; line: number }[];
     message: string;
@@ -15,26 +16,28 @@ interface IPageProps extends PageProps<Data> {
   }[];
 }
 
+export interface IPageProps extends PageProps<Data>, SanityErrors {}
+
 interface Data {
   site: SanitySiteSettings;
   posts: SanityPostConnection;
 }
 
 export default function IndexPage(props: IPageProps) {
-  console.log("props", props);
+  // console.log("props", props);
 
   const { data, errors } = props;
 
   if (errors?.length) {
     return (
-      <Layout>
+      <MainLayout>
         <GraphQLErrorList errors={errors} />
-      </Layout>
+      </MainLayout>
     );
   }
 
-  const site = (data || {}).site;
-  const postNodes = (data || {}).posts
+  const site = data.site;
+  const postNodes = data.posts
     ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs).filter(filterOutDocsPublishedInTheFuture)
     : [];
 
@@ -45,13 +48,14 @@ export default function IndexPage(props: IPageProps) {
   }
 
   return (
-    <Layout>
-      <SEO title={site.title ?? ""} description={site.description ?? ""} keywords={site.keywords as string[]} />
+    <MainLayout>
+      {/*TODO: update it later*/}
+      <SEO title={site.title} description={site.description} keywords={site.keywords as string[]} />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
         {postNodes && <BlogPostPreviewList title="Latest blog posts" nodes={postNodes} browseMoreHref="/archive/" />}
       </Container>
-    </Layout>
+    </MainLayout>
   );
 }
 
@@ -87,7 +91,7 @@ export const query = graphql`
     posts: allSanityPost(
       limit: 6
       sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      filter: { slug: { current: { ne: null } }, publishedAt: { gte: "2022-02-05" } }
     ) {
       edges {
         node {

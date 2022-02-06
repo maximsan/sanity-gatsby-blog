@@ -1,11 +1,19 @@
 import { Link } from "gatsby";
 
-import Icon from "./icon";
 import { cn } from "../lib/helpers";
+
+import { Icon } from "../icons";
 
 import * as styles from "./header.module.css";
 
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
+export interface HeaderProps {
+  showNav: boolean;
+  onHideNav: () => void;
+  onShowNav: () => void;
+  siteTitle: string;
+}
+
+const Header = ({ onHideNav, onShowNav, showNav, siteTitle }: Partial<HeaderProps>) => (
   <div className={styles.root}>
     <div className={styles.wrapper}>
       <div className={styles.branding}>

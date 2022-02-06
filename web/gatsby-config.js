@@ -1,8 +1,10 @@
 // Load variables from `.env` as soon as possible
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "development"}`,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const clientConfig = require("./client-config");
 
 const isProd = process.env.NODE_ENV === "production";
@@ -13,6 +15,7 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-styled-components",
     {
       resolve: "gatsby-source-sanity",
       options: {

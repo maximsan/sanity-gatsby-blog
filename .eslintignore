@@ -1,3 +1,4 @@
 /web/public
 /studio/build
 /studio/dist
+web/**/*.css

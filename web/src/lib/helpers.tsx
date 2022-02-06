@@ -1,6 +1,7 @@
 import { format, isFuture } from "date-fns";
+import { SanityMainImage } from "../generated/graphql";
 
-export function cn(...args) {
+export function cn(...args: (string | boolean | undefined)[]) {
   return args.filter(Boolean).join(" ");
 }
 
@@ -21,13 +22,19 @@ export function getBlogUrl(publishedAt, slug) {
   return `/blog/${format(new Date(publishedAt), "yyyy/MM")}/${slug.current || slug}/`;
 }
 
-export function buildImageObj(source = { asset: {} }) {
+export function buildImageObj(source: SanityMainImage) {
   const imageObj = {
-    asset: { _ref: source.asset._ref || source.asset._id },
+    asset: { _ref: (source?.asset as any)._ref || source?.asset?._id },
+    crop: {},
+    hotspot: {},
   };
 
-  if (source.crop) imageObj.crop = source.crop;
-  if (source.hotspot) imageObj.hotspot = source.hotspot;
+  if (source.crop) {
+    imageObj.crop = source.crop;
+  }
+  if (source.hotspot) {
+    imageObj.hotspot = source.hotspot;
+  }
 
   return imageObj;
 }

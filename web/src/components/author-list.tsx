@@ -2,21 +2,29 @@ import * as styles from "./author-list.module.css";
 
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
+import { Maybe, SanityAuthorReference } from "../generated/graphql";
 
-function AuthorList({ items, title }) {
+interface AuthorListProps {
+  items: Maybe<SanityAuthorReference>[];
+  title: string;
+}
+
+function AuthorList({ items, title }: AuthorListProps) {
   return (
     <div className={styles.root}>
       <h2 className={styles.headline}>{title}</h2>
       <ul className={styles.list}>
-        {items.map(({ author, _key }) => {
-          const authorName = author && author.name;
+        {items?.map((item) => {
+          const authorName = item?.author?.name;
           return (
-            <li key={_key} className={styles.listItem}>
+            <li key={item?._key} className={styles.listItem}>
               <div>
                 <div className={styles.avatar}>
-                  {author && author.image && author.image.asset && (
+                  {item?.author?.image?.asset && (
                     <img
-                      src={imageUrlFor(buildImageObj(author.image)).width(100).height(100).fit("crop").url()}
+                      src={
+                        imageUrlFor(buildImageObj(item.author.image)).width(100).height(100).fit("crop").url() as string
+                      }
                       alt=""
                     />
                   )}
