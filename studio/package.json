@@ -22,13 +22,13 @@
     "@sanity/default-login": "^2.26.0",
     "@sanity/desk-tool": "^2.26.0",
     "@sanity/studio-hints": "^2.24.1",
-    "date-fns": "^2.19.0",
-    "prop-types": "^15.7.2",
+    "date-fns": "^2.28.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^3.11.0",
+    "react-icons": "^4.3.1",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.13",
-    "sanity-plugin-dashboard-widget-netlify": "^1.0.1",
-    "styled-components": "^5.2.0"
+    "sanity-plugin-dashboard-widget-netlify": "^1.2.1",
+    "styled-components": "^5.3.3"
   }
 }
