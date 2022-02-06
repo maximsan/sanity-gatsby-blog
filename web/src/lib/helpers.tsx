@@ -1,20 +1,20 @@
 import { format, isFuture } from "date-fns";
-import { SanityMainImage } from "../generated/graphql";
+import { SanityMainImage, SanityPost, SanityPostConnection } from "../generated/graphql";
 
 export function cn(...args: (string | boolean | undefined)[]) {
   return args.filter(Boolean).join(" ");
 }
 
-export function mapEdgesToNodes(data) {
+export function mapEdgesToNodes(data: SanityPostConnection) {
   if (!data.edges) return [];
   return data.edges.map((edge) => edge.node);
 }
 
-export function filterOutDocsWithoutSlugs({ slug }) {
+export function filterOutDocsWithoutSlugs({ slug }: SanityPost) {
   return (slug || {}).current;
 }
 
-export function filterOutDocsPublishedInTheFuture({ publishedAt }) {
+export function filterOutDocsPublishedInTheFuture({ publishedAt }: SanityPost) {
   return !isFuture(new Date(publishedAt));
 }
 

@@ -1,9 +1,6 @@
 import React, { PropsWithChildren, useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Header from "../components/Header/header";
-import * as styles from "./layout.module.css";
-
-import "../styles/layout.css";
+import { Header } from "../components/Header/header";
 
 export interface LayoutProps {
   siteTitle?: string;
@@ -30,11 +27,9 @@ function LayoutContainer({ siteTitle, children }: PropsWithChildren<LayoutProps>
   return (
     <>
       <Header siteTitle={siteTitle} onHideNav={handleHideNav} onShowNav={handleShowNav} showNav={showNav} />
-      <div className={styles.content}>{children}</div>
-      <footer className={styles.footer}>
-        <div className={styles.footerWrapper}>
-          {/*<div className={styles.siteInfo}>{new Date().getFullYear()}</div>*/}
-        </div>
+      <div className="">{children}</div>
+      <footer className="">
+        <div className="">{/*<div className={styles.siteInfo}>{new Date().getFullYear()}</div>*/}</div>
       </footer>
     </>
   );

@@ -1,12 +1,18 @@
-import * as styles from "./blog-post-preview-grid.module.css";
 import BlogPostPreview from "./blog-post-preview";
 import { Link } from "gatsby";
+import { SanityPost } from "../generated/graphql";
 
-function BlogPostPreviewGrid(props) {
+interface BlogPostPreviewGridProps {
+  browseMoreHref: string;
+  nodes: SanityPost[];
+  title: string;
+}
+
+function BlogPostPreviewGrid(props: BlogPostPreviewGridProps) {
   return (
-    <div className={styles.root}>
-      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
-      <ul className={styles.grid}>
+    <div className="">
+      {props.title && <h2 className="">{props.title}</h2>}
+      <ul className="">
         {props.nodes &&
           props.nodes.map((node) => (
             <li key={node.id}>
@@ -15,7 +21,7 @@ function BlogPostPreviewGrid(props) {
           ))}
       </ul>
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
+        <div className="">
           <Link to={props.browseMoreHref}>Browse more</Link>
         </div>
       )}

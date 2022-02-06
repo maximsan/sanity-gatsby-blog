@@ -1,4 +1,3 @@
-import * as styles from "./blog-post.module.css";
 import { differenceInDays, formatDistance, format } from "date-fns";
 import AuthorList from "./author-list";
 import Container from "./container";
@@ -13,11 +12,11 @@ type BlogPostProps = SanityPost;
 function BlogPost(props: BlogPostProps) {
   const { _rawBody, authors, categories, title, mainImage, publishedAt } = props;
   return (
-    <article className={styles.root}>
+    <article className="">
       {mainImage && mainImage.asset && (
-        <div className={styles.mainImage}>
+        <div className="">
           <img
-            src={imageUrlFor(buildImageObj(mainImage) as unknown as string)
+            src={imageUrlFor((buildImageObj(mainImage) as unknown) as string)
               .width(1200)
               .height(Math.floor((9 / 16) * 1200))
               .fit("crop")
@@ -28,14 +27,14 @@ function BlogPost(props: BlogPostProps) {
         </div>
       )}
       <Container>
-        <div className={styles.grid}>
-          <div className={styles.mainContent}>
-            <h1 className={styles.title}>{title}</h1>
+        <div className="">
+          <div className="">
+            <h1 className="">{title}</h1>
             {_rawBody && <PortableText blocks={_rawBody} />}
           </div>
-          <aside className={styles.metaContent}>
+          <aside className="">
             {publishedAt && (
-              <div className={styles.publishedAt}>
+              <div className="">
                 {differenceInDays(new Date(publishedAt), new Date()) > 3
                   ? formatDistance(new Date(publishedAt), new Date())
                   : format(new Date(publishedAt), "MMMM Mo, yyyy")}
@@ -43,8 +42,8 @@ function BlogPost(props: BlogPostProps) {
             )}
             {authors && <AuthorList items={authors} title="Authors" />}
             {categories && (
-              <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Categories</h3>
+              <div className="">
+                <h3 className="">Categories</h3>
                 <ul>
                   {categories.map((category) => (
                     <li key={category?._id}>{category?.title}</li>

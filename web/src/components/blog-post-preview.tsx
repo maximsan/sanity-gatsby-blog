@@ -1,20 +1,19 @@
-import * as styles from "./blog-post-preview.module.css";
-import { buildImageObj, cn, getBlogUrl } from "../lib/helpers";
+import { buildImageObj, getBlogUrl } from "../lib/helpers";
 import { Link } from "gatsby";
 import PortableText from "./portableText";
 
 import { format } from "date-fns";
 import { imageUrlFor } from "../lib/image-url";
+import { SanityPost } from "../generated/graphql";
 
-import { responsiveTitle3 } from "./typography.module.css";
+interface BlogPostPreviewProps extends SanityPost {
+  isInList?: boolean;
+}
 
-function BlogPostPreview(props) {
+function BlogPostPreview(props: BlogPostPreviewProps) {
   return (
-    <Link
-      className={props.isInList ? styles.inList : styles.inGrid}
-      to={getBlogUrl(props.publishedAt, props.slug.current)}
-    >
-      <div className={styles.leadMediaThumb}>
+    <Link className="" to={getBlogUrl(props.publishedAt, props?.slug?.current)}>
+      <div className="">
         {props.mainImage && props.mainImage.asset && (
           <img
             src={imageUrlFor(buildImageObj(props.mainImage))
@@ -22,18 +21,18 @@ function BlogPostPreview(props) {
               .height(Math.floor((9 / 16) * 600))
               .auto("format")
               .url()}
-            alt={props.mainImage.alt}
+            alt={props.mainImage.alt ?? ""}
           />
         )}
       </div>
-      <div className={styles.text}>
-        <h3 className={cn(responsiveTitle3, styles.title)}>{props.title}</h3>
+      <div className="">
+        <h3 className="">{props.title}</h3>
         {props._rawExcerpt && (
-          <div className={styles.excerpt}>
+          <div className="">
             <PortableText blocks={props._rawExcerpt} />
           </div>
         )}
-        <div className={styles.date}>{format(new Date(props.publishedAt), "MMMM Mo, yyyy")}</div>
+        <div className="">{format(new Date(props.publishedAt), "MMMM Mo, yyyy")}</div>
       </div>
     </Link>
   );

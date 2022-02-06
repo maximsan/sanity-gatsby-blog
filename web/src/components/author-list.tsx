@@ -1,5 +1,3 @@
-import * as styles from "./author-list.module.css";
-
 import { buildImageObj } from "../lib/helpers";
 import { imageUrlFor } from "../lib/image-url";
 import { Maybe, SanityAuthorReference } from "../generated/graphql";
@@ -11,15 +9,15 @@ interface AuthorListProps {
 
 function AuthorList({ items, title }: AuthorListProps) {
   return (
-    <div className={styles.root}>
-      <h2 className={styles.headline}>{title}</h2>
-      <ul className={styles.list}>
+    <div className="">
+      <h2 className="">{title}</h2>
+      <ul className="">
         {items?.map((item) => {
           const authorName = item?.author?.name;
           return (
-            <li key={item?._key} className={styles.listItem}>
+            <li key={item?._key} className="">
               <div>
-                <div className={styles.avatar}>
+                <div className="">
                   {item?.author?.image?.asset && (
                     <img
                       src={
