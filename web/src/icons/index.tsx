@@ -1,6 +1,12 @@
+import React from "react";
+
 import { HamburgerIcon } from "./hamburger";
 
-export function Icon(props) {
+interface IconProps {
+  symbol: string;
+}
+
+export function Icon(props: IconProps) {
   switch (props.symbol) {
     case "hamburger":
       return <HamburgerIcon />;

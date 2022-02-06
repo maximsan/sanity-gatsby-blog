@@ -1,3 +1,5 @@
+import React from "react";
+
 import { root } from "./container.module.css";
 import { PropsWithChildren } from "react";
 

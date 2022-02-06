@@ -17,7 +17,7 @@ function BlogPost(props: BlogPostProps) {
       {mainImage && mainImage.asset && (
         <div className={styles.mainImage}>
           <img
-            src={imageUrlFor((buildImageObj(mainImage) as unknown) as string)
+            src={imageUrlFor(buildImageObj(mainImage) as unknown as string)
               .width(1200)
               .height(Math.floor((9 / 16) * 1200))
               .fit("crop")

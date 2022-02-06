@@ -1,3 +1,5 @@
+import React from "react";
+
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 import BlogPost from "../components/blog-post";

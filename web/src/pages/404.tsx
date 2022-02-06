@@ -1,3 +1,5 @@
+import React from "react";
+
 import SEO from "../components/seo";
 import LayoutContainer from "../containers/layout";
 

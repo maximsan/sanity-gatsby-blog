@@ -1,3 +1,5 @@
+import React from "react";
+
 const strokeStyle = { vectorEffect: "non-scaling-stroke" };
 
 export const HamburgerIcon = () => (

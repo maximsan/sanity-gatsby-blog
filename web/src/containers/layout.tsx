@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useState } from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import Header from "../components/header";
+import Header from "../components/Header/header";
 import * as styles from "./layout.module.css";
 
 import "../styles/layout.css";

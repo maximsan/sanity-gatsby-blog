@@ -1,8 +1,9 @@
+import React from "react";
+
 import { Link } from "gatsby";
 
-import { cn } from "../lib/helpers";
-
-import { Icon } from "../icons";
+import { cn } from "../../lib/helpers";
+import { Icon } from "../../icons";
 
 import * as styles from "./header.module.css";
 
@@ -27,7 +28,7 @@ const Header = ({ onHideNav, onShowNav, showNav, siteTitle }: Partial<HeaderProp
       <nav className={cn(styles.nav, showNav && styles.showNav)}>
         <ul>
           <li>
-            <Link to="/archive/">Archive</Link>
+            <Link to="/contact-me/">Contact me</Link>
           </li>
         </ul>
       </nav>

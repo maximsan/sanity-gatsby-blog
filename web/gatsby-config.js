@@ -10,12 +10,13 @@ const clientConfig = require("./client-config");
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  jsxRuntime: "automatic",
+  // jsxRuntime: "automatic",
   plugins: [
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
+    "gatsby-plugin-top-layout",
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-styled-components",
+    "gatsby-plugin-mui-emotion",
     {
       resolve: "gatsby-source-sanity",
       options: {

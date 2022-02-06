@@ -1,3 +1,4 @@
+import React from "react";
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 import { filterOutDocsPublishedInTheFuture, filterOutDocsWithoutSlugs, mapEdgesToNodes } from "../lib/helpers";

@@ -1,3 +1,5 @@
+import React from "react";
+
 import Helmet from "react-helmet";
 import type { HelmetProps } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
